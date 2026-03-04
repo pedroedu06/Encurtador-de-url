@@ -1,31 +1,36 @@
 import { query } from "../postgres.js";
+import Sqids from "sqids";
 
 
-const encurtaURL = async (url: string) => {
-    try {
-        new URL(url);
-    } catch {
-        throw { code: 404, message: "error ao achar a url. " }
-    }
+const shortIdCreated = (id: number) => {
+    const sqids = new Sqids({
+        alphabet: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        minLength: 6
+    })
 
-    async function insertlink(url: string) {
+    const shortcode = sqids.encode([id]);
+    console.log('aqui o shortcode da url', shortcode);
+    
+    async function inserttable(shortcode:string, id: number) {
         try {
             const result = await query(
-                `INSERT INTO links (long_url)
-                 VALUES ($1)
-                 RETURNING id;                 
-                `, [url]
-            );
-
-            const id = result.rows[0].id;
-            console.log("link inserido com sucesso")
-            return id;          
-        } catch {
-            console.error("ERROR 422, nao foi possivel inserir no banco de dados!")
+                `UPDATE links
+                 SET shortcode = $1
+                 WHERE id = $2 
+                `,
+                [shortcode, id]
+            )
+            console.log('tabela atualizada com sucesso!') 
+        } catch (err) {
+            throw {code: 503, message: "erro ao atualizar a tabela"}
         }
-    };
+    }
+
+    inserttable(shortcode, id)
+
+    const link = `http://localhost:3000/senduser/${shortcode}`;
     
-    return await insertlink(url);
+    return link;
 }
 
-export default encurtaURL;
+export default shortIdCreated;
