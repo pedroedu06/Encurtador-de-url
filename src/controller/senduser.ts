@@ -19,7 +19,7 @@ const sendUser = async (shortcode: string) => {
 
         return long_url;
     } catch (err) {
-        throw { code: 422, message: "erro ao verificar no banco!", err };
+        throw { code: 500, message: "erro ao verificar no banco!", err };
     }
 }
 
