@@ -33,6 +33,7 @@ app.get('/senduser/:shortcode', async (req, res) => {
         }
 
         const long_url = await sendUser(shortcode);
+        
         if (!long_url) {
             throw { code: 400, message: "falha ao buscar no banco" };
         }
@@ -46,6 +47,6 @@ app.get('/senduser/:shortcode', async (req, res) => {
     }
 })
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log("servidor conectado na porta 3000!");
 })

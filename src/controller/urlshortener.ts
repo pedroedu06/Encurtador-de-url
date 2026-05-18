@@ -28,7 +28,7 @@ const shortIdCreated = (id: number) => {
 
     inserttable(shortcode, id)
 
-    const link = `http://localhost:3000/senduser/${shortcode}`;
+    const link = `http://localhost:3001/senduser/${shortcode}`;
     
     return link;
 }
