@@ -9,7 +9,6 @@ const shortIdCreated = (id: number) => {
     })
 
     const shortcode = sqids.encode([id]);
-    console.log('aqui o shortcode da url', shortcode);
     
     async function inserttable(shortcode:string, id: number) {
         try {
@@ -20,7 +19,6 @@ const shortIdCreated = (id: number) => {
                 `,
                 [shortcode, id]
             )
-            console.log('tabela atualizada com sucesso!') 
         } catch (err) {
             throw {code: 503, message: "erro ao atualizar a tabela"}
         }

@@ -17,7 +17,6 @@ const encurtaURL = async (url: string) => {
                 );
 
                 const id = result.rows[0].id;
-                console.log("link inserido com sucesso")
                 return id;
             } catch {
                 throw { code: 503, message: "Erro ao inserir no banco de dados!" }

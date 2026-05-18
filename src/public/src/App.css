@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body,
+html {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #0F172A;
+    position: relative;
+}
+
+.background-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
+.app-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-section {
+    margin-bottom: 40px;
+}
+
+.title {
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 1.25rem;
+    font-weight: 400;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.main-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 560px;
+    text-align: left;
+}
+
+.input-label {
+    display: block;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.url-input {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    color: #333;
+}
+
+.url-input:focus {
+    border-color: #1E293B;
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(30, 41, 59, 0.1);
+}
+
+.url-input::placeholder {
+    color: #aaa;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: white;
+    background-color: #0F172A;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #1E293B;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    background-color: #9c6b75;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.result-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-label {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.result-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px 16px;
+    gap: 12px;
+}
+
+.result-link {
+    color: #0F172A;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.result-link:hover {
+    text-decoration: underline;
+}
+
+.copy-btn {
+    background-color: #0F172A;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background-color: #1E293B;
+}
+
+.copy-btn.copied {
+    background-color: #2e7d32;
+}

@@ -1,10 +1,15 @@
 import express from "express";
+import cors from 'cors'
 import encurtaURL from "./controller/urlcreated";
 import shortIdCreated from "./controller/urlshortener";
 import sendUser from "./controller/senduser";
 import redis from "./redisconect";
 
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['POST', 'GET']
+}))
 app.use(express.json());
 
 //register the user url in database after that do the process for encrypted de url
@@ -14,7 +19,7 @@ app.post('/sendurl', async (req, res) => {
         const urlid = await encurtaURL(req.body.url);
         const resultfinal = await shortIdCreated(urlid);
         console.log(resultfinal);
-        res.json({ message: "ok" })
+        res.json({ resultfinal })
     } catch (err: any) {
         console.error(err)
         res.status(err?.code || 500).json({ error: err?.message || "internal error" })
