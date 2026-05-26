@@ -12,13 +12,18 @@ app.use(cors({
 }))
 app.use(express.json());
 
+//router teste server for prod
+
+app.get('/ping', (_, res) => {
+    res.json({"menssage" : "pong"})
+})
+
 //register the user url in database after that do the process for encrypted de url
 
 app.post('/sendurl', async (req, res) => {
     try {
         const urlid = await encurtaURL(req.body.url);
         const resultfinal = await shortIdCreated(urlid);
-        console.log(resultfinal);
         res.json({ resultfinal })
     } catch (err: any) {
         console.error(err)
