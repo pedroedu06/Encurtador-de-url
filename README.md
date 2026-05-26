@@ -1,4 +1,4 @@
-# Encurtador de URL - Technical Documentation
+# Encurtador de URL 
 
 ## Overview
 
